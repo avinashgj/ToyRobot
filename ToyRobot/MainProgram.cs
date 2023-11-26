@@ -13,16 +13,15 @@ namespace ToyRobot
     {
         static void Main(string[] args)
         {
-            var path = ConfigurationManager.AppSettings["Path"].ToString();
-			// Automatically executes when application is started.
-			if (path == null)// || args.Length == 0)
+           // Automatically executes when application is started.
+			if (args == null || args.Length == 0)
             {
                 Console.WriteLine("Please specify a .txt filepath.");
                 return;
             }
-            if (!File.Exists(path) && (Path.GetExtension(path)==".txt"))
+            if (!File.Exists(args[0]) && (Path.GetExtension(args[0])==".txt"))
             {
-                string[] commands = File.ReadAllLines(@"C:\Users\HP\Desktop\test.txt");
+                string[] commands = File.ReadAllLines(args[0]);
                 MainProgram main = new MainProgram();
                 Console.WriteLine(main.Commander(commands));
             }
